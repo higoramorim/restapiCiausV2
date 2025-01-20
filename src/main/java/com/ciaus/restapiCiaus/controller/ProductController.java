@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/")
 public class ProductController {
-    private final ProductService productService;
-
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    ProductService productService;
 
     @GetMapping("products")
     @ResponseStatus(HttpStatus.OK)
@@ -27,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("products/{id}")
-    public ResponseEntity<ProductDto> getById(@PathVariable int id){
+    public ResponseEntity<ProductDto> getById(@PathVariable Long id){
         return new ResponseEntity<>(
                 productService.getProductById(id), HttpStatus.OK
         );
@@ -46,7 +42,7 @@ public class ProductController {
     @PutMapping("products")
     public ResponseEntity<ProductDto> updateProduct(
             @RequestBody ProductDto productDto,
-            @PathVariable int id
+            @PathVariable Long id
     ){
         ProductDto response = productService.updateProduct(productDto, id);
         return new ResponseEntity<>(
@@ -55,7 +51,7 @@ public class ProductController {
     }
 
     @DeleteMapping("products")
-    public ResponseEntity<String> deleteProduct(@PathVariable int id){
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
         return new ResponseEntity<>("Produto excluído", HttpStatus.OK);
     }

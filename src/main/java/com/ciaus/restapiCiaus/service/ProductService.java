@@ -13,12 +13,8 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private final ProductRepository productRepository;
-
     @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    private ProductRepository productRepository;
 
     public ProductDto createProduct(Product product){
         Product newProduto = productRepository.save(product);
@@ -29,14 +25,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public ProductDto getProductById(int id){
+    public ProductDto getProductById(Long id){
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException("produto inexistene")
         );
         return ProductMapper.mapToDto(product);
     }
 
-    public ProductDto updateProduct(ProductDto productDto, int id){
+    public ProductDto updateProduct(ProductDto productDto, Long id){
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException("produto inexistente")
         );
@@ -46,7 +42,7 @@ public class ProductService {
         return ProductMapper.mapToDto(updated);
     }
 
-    public void deleteProduct(int id){
+    public void deleteProduct(Long id){
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException("produto inexistente")
         );

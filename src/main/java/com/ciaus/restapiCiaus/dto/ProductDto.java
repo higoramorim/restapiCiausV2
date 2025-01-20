@@ -1,17 +1,21 @@
 package com.ciaus.restapiCiaus.dto;
 
-import lombok.Data;
-
-@Data
 public class ProductDto {
-    private int id;
+    private Long id;
     private String name;
 
-    public int getId() {
+    public ProductDto(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public ProductDto(){}
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
