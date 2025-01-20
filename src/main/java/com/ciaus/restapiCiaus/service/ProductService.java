@@ -5,6 +5,7 @@ import com.ciaus.restapiCiaus.exception.ProductNotFoundException;
 import com.ciaus.restapiCiaus.mapper.ProductMapper;
 import com.ciaus.restapiCiaus.model.Product;
 import com.ciaus.restapiCiaus.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +15,14 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    public ProductDto create(Product product){
-        Product newProduct = productRepository.save(product);
-        return ProductMapper.mapToDto(newProduct);
+    public ProductDto createProduct(Product product){
+        Product newProduto = productRepository.save(product);
+        return ProductMapper.mapToDto(newProduto);
     }
 
     public List<Product> getAllProducts(){

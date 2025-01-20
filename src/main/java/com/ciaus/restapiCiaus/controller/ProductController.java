@@ -3,6 +3,7 @@ package com.ciaus.restapiCiaus.controller;
 import com.ciaus.restapiCiaus.dto.ProductDto;
 import com.ciaus.restapiCiaus.model.Product;
 import com.ciaus.restapiCiaus.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,11 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
+    @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-    
+
     @GetMapping("products")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAll(){
@@ -33,11 +35,11 @@ public class ProductController {
 
     @PostMapping("products")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ProductDto> create(
+    public ResponseEntity<ProductDto> createProduct(
             @RequestBody Product product
     ){
         return new ResponseEntity<>(
-                productService.create(product), HttpStatus.CREATED
+                productService.createProduct(product), HttpStatus.CREATED
         );
     }
 
