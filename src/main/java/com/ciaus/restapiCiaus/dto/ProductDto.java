@@ -1,21 +1,21 @@
 package com.ciaus.restapiCiaus.dto;
 
 public class ProductDto {
-    private Long id;
+    private int id;
     private String name;
 
-    public ProductDto(Long id, String name) {
+    public ProductDto(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
     public ProductDto(){}
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
