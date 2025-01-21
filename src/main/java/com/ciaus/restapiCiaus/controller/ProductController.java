@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("products/{id}")
-    public ResponseEntity<ProductDto> getById(@PathVariable Long id){
+    public ResponseEntity<ProductDto> getById(@PathVariable int id){
         return new ResponseEntity<>(
                 productService.getProductById(id), HttpStatus.OK
         );
@@ -42,7 +42,7 @@ public class ProductController {
     @PutMapping("products")
     public ResponseEntity<ProductDto> updateProduct(
             @RequestBody ProductDto productDto,
-            @PathVariable Long id
+            @PathVariable int id
     ){
         ProductDto response = productService.updateProduct(productDto, id);
         return new ResponseEntity<>(
@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @DeleteMapping("products")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
+    public ResponseEntity<String> deleteProduct(@PathVariable int id){
         productService.deleteProduct(id);
         return new ResponseEntity<>("Produto excluído", HttpStatus.OK);
     }

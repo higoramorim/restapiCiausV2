@@ -25,14 +25,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public ProductDto getProductById(Long id){
+    public ProductDto getProductById(int id){
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException("produto inexistene")
         );
         return ProductMapper.mapToDto(product);
     }
 
-    public ProductDto updateProduct(ProductDto productDto, Long id){
+    public ProductDto updateProduct(ProductDto productDto, int id){
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException("produto inexistente")
         );
@@ -42,7 +42,7 @@ public class ProductService {
         return ProductMapper.mapToDto(updated);
     }
 
-    public void deleteProduct(Long id){
+    public void deleteProduct(int id){
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException("produto inexistente")
         );
