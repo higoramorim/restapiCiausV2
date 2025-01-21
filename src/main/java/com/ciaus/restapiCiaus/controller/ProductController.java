@@ -3,6 +3,7 @@ package com.ciaus.restapiCiaus.controller;
 import com.ciaus.restapiCiaus.dto.ProductDto;
 import com.ciaus.restapiCiaus.model.Product;
 import com.ciaus.restapiCiaus.service.ProductService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,8 +51,8 @@ public class ProductController {
         );
     }
 
-    @DeleteMapping("products")
-    public ResponseEntity<String> deleteProduct(@RequestParam int id){
+    @DeleteMapping("products/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable int id){
         productService.deleteProduct(id);
         return new ResponseEntity<>("Produto excluído", HttpStatus.OK);
     }
