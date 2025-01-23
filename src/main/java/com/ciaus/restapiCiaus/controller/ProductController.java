@@ -9,12 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("api/")
 public class ProductController {
-    private static final Logger log = Logger.getLogger("1L");
     @Autowired
     ProductService productService;
 
@@ -27,14 +25,12 @@ public class ProductController {
     @GetMapping("products/{id}")
     public ResponseEntity<ProductDto> getById(@PathVariable int id){
         try {
-            log.info("requesting product by id");
             return new ResponseEntity<>(
 
                     productService.getProductById(id), HttpStatus.OK
             );
 
         } catch (Exception e) {
-            log.info("error get by id");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
