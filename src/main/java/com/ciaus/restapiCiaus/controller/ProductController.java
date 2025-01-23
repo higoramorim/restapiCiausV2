@@ -1,6 +1,7 @@
 package com.ciaus.restapiCiaus.controller;
 
 import com.ciaus.restapiCiaus.dto.ProductDto;
+import com.ciaus.restapiCiaus.exception.ProductNotFoundException;
 import com.ciaus.restapiCiaus.model.Product;
 import com.ciaus.restapiCiaus.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,11 @@ public class ProductController {
     public ResponseEntity<ProductDto> getById(@PathVariable int id){
         try {
             return new ResponseEntity<>(
-
                     productService.getProductById(id), HttpStatus.OK
             );
 
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            throw new ProductNotFoundException("produto inexistente na base de dados");
         }
     }
 
