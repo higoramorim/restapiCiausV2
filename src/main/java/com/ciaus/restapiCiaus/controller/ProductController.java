@@ -25,14 +25,9 @@ public class ProductController {
 
     @GetMapping("products/{id}")
     public ResponseEntity<ProductDto> getById(@PathVariable int id){
-        try {
-            return new ResponseEntity<>(
-                    productService.getProductById(id), HttpStatus.OK
-            );
-
-        } catch (Exception e) {
-            throw new ProductNotFoundException("produto inexistente na base de dados");
-        }
+        return new ResponseEntity<>(
+                productService.getProductById(id), HttpStatus.OK
+        );
     }
 
     @PostMapping("products")
